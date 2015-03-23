@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * Main runner application
@@ -14,6 +15,7 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
  * @author alessandro.putzu
  *
  */
+@ImportResource("classpath:root-context.xml")
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
 
