@@ -9,4 +9,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
   public Customer findByCfAndNdg(@Param("cf") String cf, @Param("ndg") String ndg);
 
+  public Customer findByNdg(@Param("ndg") String ndg);
+
 }

@@ -3,7 +3,11 @@
  */
 package it.sia.tonbeller.customersearch.business.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,4 +37,6 @@ public class Customer extends AbstractRootDomain {
 
   private String ndg;
 
+  @Transient
+  private List<CustomerDocument> documents = new ArrayList<CustomerDocument>();
 }
