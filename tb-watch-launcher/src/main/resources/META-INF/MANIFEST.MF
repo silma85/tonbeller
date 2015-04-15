@@ -1,0 +1,1 @@
+Main-Class: it.sia.tonbeller.watch.cli.TBWatchLauncherCLI
