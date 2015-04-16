@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" id="outbound" th:inline="text">
+    <table id="outbound-messages-table" class="table-simple">
+        <thead>
+            <tr>
+                <th>Identificativo</th>
+                <th>Contenuto</th>
+                <th>Data inserimento DB</th>
+                <th>Tipo messaggio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="message : ${inbound}">
+                <td>[[${message.messageId}]]</td>
+                <td>[[${message.content}]]</td>
+                <td>[[${message.dtInserted}]]</td>
+                <td>[[${message.messageType}]]</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="tb-embargo-connector" path="/tb-embargo-connector" reloadable="true"
+	source="org.eclipse.jst.jee.server:tb-embargo-connector">
+	<ResourceLink global="jdbc/context_tbembargo_connector_db" name="jdbc/tbembargo_connector_db" type="javax.sql.DataSource"/>
+</Context>

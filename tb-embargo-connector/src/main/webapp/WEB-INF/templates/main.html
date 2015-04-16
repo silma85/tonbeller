@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Messages Dashboard</title>
+<link href="webjars/bootstrap/3.3.4/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"></link>
+<link href="webjars/datatables/1.10.5/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"></link>
+<link href="webjars/jquery-ui/1.11.4/themes/base/theme.css" rel="stylesheet" type="text/css"></link>
+<link href="webjars/jquery-ui/1.11.4/themes/base/tabs.css" rel="stylesheet" type="text/css"></link>
+<style>
+<!--
+*, html {
+  
+}
+
+body {
+  font: 10pt Verdana, Tahoma, sans-serif;
+}
+
+.red {
+  color: red;
+}
+-->
+</style>
+<script type="text/javascript" src="webjars/jquery/2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/jquery-ui/1.11.4/ui/core.js"></script>
+<script type="text/javascript" src="webjars/jquery-ui/1.11.4/ui/widget.js"></script>
+<script type="text/javascript" src="webjars/jquery-ui/1.11.4/ui/tabs.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/3.3.4/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="webjars/datatables/1.10.5/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    <!--
+        $(function() {
+            $('#messages-tabs').tabs({
+                load: function (event, ui) {
+                    $('.table-simple').DataTable();
+                }
+            });
+        })
+    //-->
+    </script>
+</head>
+<body th:inline="text">
+    <header>
+        <div>
+            Logged user is <span sec:authentication="name">...</span> with roles <span sec:authentication="principal.authorities">...</span>
+        </div>
+    </header>
+    <section id="content">
+        <h3>Review inbound, outbound and failed messages.</h3>
+        <p>[[${message}]]</p>
+        <div id="messages-tabs">
+            <ul>
+                <li><a th:href="@{messages/inbound}">Inbound</a></li>
+                <li><a th:href="@{messages/outbound}">Outbound</a></li>
+                <li><a th:href="@{messages/failed}">Failed</a></li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>
