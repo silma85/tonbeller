@@ -18,9 +18,10 @@
 
 		<!-- Internal dependency -->
 		<dependency>
-			<groupId>it.sia.tonbeller</groupId>
-			<artifactId>tb-embargo-connector-login-dummy</artifactId>
+			<groupId>XSSO_BPO</groupId>
+			<artifactId>XSSO_BPO</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<scope>runtime</scope>			
 		</dependency>
 
 		<!-- Spring -->
@@ -34,7 +35,7 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -176,4 +177,5 @@
 			<url>https://repo.spring.io/libs-release</url>
 		</pluginRepository>
 	</pluginRepositories>
+
 </project>

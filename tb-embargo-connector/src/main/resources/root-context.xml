@@ -49,9 +49,6 @@
 		</property>
 	</bean>
 
-	<bean id="loginDataSource"
-		class="it.sia.tonbeller.embargo.connector.login.dummy.DummyLoginProvider" />
-
 	<!-- **************************************************************** -->
 	<!-- THYMELEAF-SPECIFIC ARTIFACTS -->
 	<!-- TemplateResolver <- TemplateEngine <- ViewResolver -->

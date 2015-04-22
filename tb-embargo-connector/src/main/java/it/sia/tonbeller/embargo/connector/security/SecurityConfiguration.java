@@ -5,10 +5,12 @@ package it.sia.tonbeller.embargo.connector.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider;
 
 /**
  * Security auto-config bean.
@@ -18,17 +20,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @EnableWebSecurity
 @Configuration
+@ImportResource("classpath:root-security.xml")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Autowired
-  private SecurityUserDetailsService userDetailsService;
+  private PreAuthenticatedAuthenticationProvider preAuthenticatedProvider;
+
+  @Autowired
+  private PreAuthenticationFilter preAuthFilter;
 
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder authorization) throws Exception {
-    // authorization.inMemoryAuthentication()
-    // .withUser("admin").password("admin").roles("USER", "ADMIN").and()
-    // .withUser("user").password("password").roles("USER");
-    authorization.userDetailsService(userDetailsService);
+    authorization.authenticationProvider(preAuthenticatedProvider);
   }
 
   protected void configure(HttpSecurity http) throws Exception {
@@ -39,6 +42,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // And any other request to require authentication.
         .anyRequest().authenticated()
         // And form login to require none.
-        .and().formLogin().loginPage("/login").permitAll();
+        .and().addFilter(preAuthFilter);
   }
 }
