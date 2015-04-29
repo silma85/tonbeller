@@ -1,0 +1,1057 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://server.ws.sironkyc.tonbeller.com" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax23="http://db.ws.sironkyc.tonbeller.com/xsd" xmlns:ax21="http://data.ws.sironkyc.tonbeller.com/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://server.ws.sironkyc.tonbeller.com">
+    <wsdl:documentation>KYCService01</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://db.ws.sironkyc.tonbeller.com/xsd">
+            <xs:complexType name="CaseFlag">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax24="http://db.ws.sironkyc.tonbeller.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://data.ws.sironkyc.tonbeller.com/xsd">
+            <xs:import namespace="http://db.ws.sironkyc.tonbeller.com/xsd"/>
+            <xs:complexType name="LoginData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ChangeOfCircumstances">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cocHash" type="xs:int"/>
+                    <xs:element minOccurs="0" name="cocShortText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cocText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cocType" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="customerNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="histBis" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="histVon" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ChangeOfCircumstancesResult01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="addCoCSuccessfull" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="customerNr" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="errorText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="exceptionText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="returnCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PersonData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="HCountry" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="birthCity" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="birthCountry" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="birthDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="branch" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="city" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="csMNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="custType" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="customFields" nillable="true" type="ax21:CustomField"/>
+                    <xs:element minOccurs="0" name="cusy" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="gender" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="natCountry" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="passNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="personID" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="riskClass" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="street" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="zipCode" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CustomField">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="key" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BoData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="boKundnr" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="deleteFlag" type="xs:string"/>
+                    <xs:element minOccurs="0" name="f1" type="xs:string"/>
+                    <xs:element minOccurs="0" name="f2" type="xs:string"/>
+                    <xs:element minOccurs="0" name="f3" type="xs:string"/>
+                    <xs:element minOccurs="0" name="kundnr" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="relType" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="share" type="xs:float"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RequestResultTaxAct01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="errorText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="exceptionText" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="resultData" nillable="true" type="ax21:ResultDataTaxAct01"/>
+                    <xs:element minOccurs="0" name="returnCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ResultDataTaxAct01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="clientId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="data" nillable="true" type="ax21:TaxActResult01"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TaxActResult01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="caseComment" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="caseCreationDate" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="caseFlags" nillable="true" type="ax24:CaseFlag"/>
+                    <xs:element minOccurs="0" name="caseFollowUpDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="casePersonStatusRang" type="xs:int"/>
+                    <xs:element minOccurs="0" name="casePersonStatusShortText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="casePersonStatusText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="caseStatus" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="scoringCocCounter" type="xs:int"/>
+                    <xs:element minOccurs="0" name="scoringCreationDate" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="scoringDetail" nillable="true" type="ax21:TaxActScoringDetailData"/>
+                    <xs:element minOccurs="0" name="scoringLastCheckDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="scoringPersonStatusRang" type="xs:int"/>
+                    <xs:element minOccurs="0" name="scoringPersonStatusText" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TaxActScoringDetailData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="indicationName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="instructionShortText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="instructionText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="personStatusRang" type="xs:int"/>
+                    <xs:element minOccurs="0" name="personStatusText" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CustomerResult01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="customer" nillable="true" type="ax21:CustomerData01"/>
+                    <xs:element minOccurs="0" name="errorText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="exceptionText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="returnCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CustomerData01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="birthCity" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="birthCountry" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="birthDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="branch" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="city" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="csMNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="custNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cusy" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="gender" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="hCountry" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="natCountry" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="passNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="riskClass" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="street" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="zipCode" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PdfProtocolResult01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="errorText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="exceptionText" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="pdfData" nillable="true" type="ax21:PdfData01"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="pdfdata" nillable="true" type="ax21:PdfData01"/>
+                    <xs:element minOccurs="0" name="returnCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PdfData01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="rawData" nillable="true" type="xs:base64Binary"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MimeTypesResult01">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="allowedMimeTypes" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="errorText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="exceptionText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="returnCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DocumentTypeResult01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="errorText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="exceptionText" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="resultData" nillable="true" type="ax21:DocumentTypeData01"/>
+                    <xs:element minOccurs="0" name="returnCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DocumentTypeData01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="followUpLeadDays" type="xs:int"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="typeNr" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DocumentData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="customerNo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="document" nillable="true" type="xs:base64Binary"/>
+                    <xs:element minOccurs="0" name="documentTypeNo" type="xs:int"/>
+                    <xs:element minOccurs="0" name="documentUri" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="expirationDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="followUpDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="geprueftJN" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="issueDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="mimeType" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DocumentResult01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="added" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="errorText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="exceptionText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="returnCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RequestResult01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="errorText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="exceptionText" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="resultData" nillable="true" type="ax21:ResultData01"/>
+                    <xs:element minOccurs="0" name="returnCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ResultData01">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="actions" nillable="true" type="ax21:KycActions"/>
+                    <xs:element minOccurs="0" name="clientId" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="risks" nillable="true" type="ax21:KycRisk"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="KycActions">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="longText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="rang" type="xs:int"/>
+                    <xs:element minOccurs="0" name="shortText" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="KycRisk">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="riskAbbrev" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="riskClass" type="xs:int"/>
+                    <xs:element minOccurs="0" name="riskDesc" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DetailRequestResult01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="errorText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="exceptionText" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="resultData" nillable="true" type="ax21:DetailResultData01"/>
+                    <xs:element minOccurs="0" name="returnCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DetailResultData01">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="brMatches" nillable="true" type="ax21:BusinessRuleResult"/>
+                    <xs:element minOccurs="0" name="custId" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="listMatches" nillable="true" type="ax21:DetailListMatch"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BusinessRuleResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="brAction" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="brDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="brId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="brPrePost" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DetailListMatch">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="hits" nillable="true" type="ax21:HitWord"/>
+                    <xs:element minOccurs="0" name="score" type="xs:double"/>
+                    <xs:element minOccurs="0" name="slId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="slInstitutsId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="slListName" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="HitWord">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="fieldId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="matchedWord" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="score" type="xs:double"/>
+                    <xs:element minOccurs="0" name="searchedWord" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CustIdStateResult01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="errorText" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="exceptionText" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="resultData" nillable="true" type="ax21:CustIdState01"/>
+                    <xs:element minOccurs="0" name="returnCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CustIdState01">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="customerExist" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="questionaryEntryExist" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="scoringResultExist" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax22="http://data.ws.sironkyc.tonbeller.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://server.ws.sironkyc.tonbeller.com">
+            <xs:import namespace="http://data.ws.sironkyc.tonbeller.com/xsd"/>
+            <xs:element name="addChangeOfCircumstances">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="loginData" nillable="true" type="ax22:LoginData"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="changeOfCircumstancesList" nillable="true" type="ax22:ChangeOfCircumstances"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addChangeOfCircumstancesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax22:ChangeOfCircumstancesResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="taxActScore">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="loginData" nillable="true" type="ax22:LoginData"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="persons" nillable="true" type="ax22:PersonData"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="beneficialOwnerData" nillable="true" type="ax22:BoData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="taxActScoreResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RequestResultTaxAct01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycGetCustomerInformation">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="li" nillable="true" type="ax22:LoginData"/>
+                        <xs:element minOccurs="0" name="custId" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycGetCustomerInformationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:CustomerResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycGetPdfProtocol">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="li" nillable="true" type="ax22:LoginData"/>
+                        <xs:element minOccurs="0" name="custId" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycGetPdfProtocolResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:PdfProtocolResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllowedDocumentMimeTypes">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="loginData" nillable="true" type="ax22:LoginData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllowedDocumentMimeTypesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:MimeTypesResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getDocumentTypes">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="loginData" nillable="true" type="ax22:LoginData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getDocumentTypesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:DocumentTypeResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addFATCADocument">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="loginData" nillable="true" type="ax22:LoginData"/>
+                        <xs:element minOccurs="0" name="document" nillable="true" type="ax22:DocumentData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addFATCADocumentResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:DocumentResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycScore">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="li" nillable="true" type="ax22:LoginData"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="persons" nillable="true" type="ax22:PersonData"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="beneficialOwnerData" nillable="true" type="ax22:BoData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycScoreResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RequestResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycGetResults">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="li" nillable="true" type="ax22:LoginData"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="custIds" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycGetResultsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RequestResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycGetDetailResults">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="li" nillable="true" type="ax22:LoginData"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="custIds" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycGetDetailResultsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:DetailRequestResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycRenameCustId">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="li" nillable="true" type="ax22:LoginData"/>
+                        <xs:element minOccurs="0" name="oldCustId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="newCustId" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycRenameCustIdResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RequestResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycDeleteCustomer">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="li" nillable="true" type="ax22:LoginData"/>
+                        <xs:element minOccurs="0" name="custId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycDeleteCustomerResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RequestResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycGetCustIdState">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="li" nillable="true" type="ax22:LoginData"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="custIds" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kycGetCustIdStateResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:CustIdStateResult01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getFatcaStatus">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="loginData" nillable="true" type="ax22:LoginData"/>
+                        <xs:element minOccurs="0" name="customerId" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getFatcaStatusResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RequestResultTaxAct01"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="kycGetPdfProtocolRequest">
+        <wsdl:part name="parameters" element="ns:kycGetPdfProtocol"/>
+    </wsdl:message>
+    <wsdl:message name="kycGetPdfProtocolResponse">
+        <wsdl:part name="parameters" element="ns:kycGetPdfProtocolResponse"/>
+    </wsdl:message>
+    <wsdl:message name="taxActScoreRequest">
+        <wsdl:part name="parameters" element="ns:taxActScore"/>
+    </wsdl:message>
+    <wsdl:message name="taxActScoreResponse">
+        <wsdl:part name="parameters" element="ns:taxActScoreResponse"/>
+    </wsdl:message>
+    <wsdl:message name="kycGetCustomerInformationRequest">
+        <wsdl:part name="parameters" element="ns:kycGetCustomerInformation"/>
+    </wsdl:message>
+    <wsdl:message name="kycGetCustomerInformationResponse">
+        <wsdl:part name="parameters" element="ns:kycGetCustomerInformationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getFatcaStatusRequest">
+        <wsdl:part name="parameters" element="ns:getFatcaStatus"/>
+    </wsdl:message>
+    <wsdl:message name="getFatcaStatusResponse">
+        <wsdl:part name="parameters" element="ns:getFatcaStatusResponse"/>
+    </wsdl:message>
+    <wsdl:message name="kycGetResultsRequest">
+        <wsdl:part name="parameters" element="ns:kycGetResults"/>
+    </wsdl:message>
+    <wsdl:message name="kycGetResultsResponse">
+        <wsdl:part name="parameters" element="ns:kycGetResultsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="addChangeOfCircumstancesRequest">
+        <wsdl:part name="parameters" element="ns:addChangeOfCircumstances"/>
+    </wsdl:message>
+    <wsdl:message name="addChangeOfCircumstancesResponse">
+        <wsdl:part name="parameters" element="ns:addChangeOfCircumstancesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="addFATCADocumentRequest">
+        <wsdl:part name="parameters" element="ns:addFATCADocument"/>
+    </wsdl:message>
+    <wsdl:message name="addFATCADocumentResponse">
+        <wsdl:part name="parameters" element="ns:addFATCADocumentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="kycGetCustIdStateRequest">
+        <wsdl:part name="parameters" element="ns:kycGetCustIdState"/>
+    </wsdl:message>
+    <wsdl:message name="kycGetCustIdStateResponse">
+        <wsdl:part name="parameters" element="ns:kycGetCustIdStateResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getAllowedDocumentMimeTypesRequest">
+        <wsdl:part name="parameters" element="ns:getAllowedDocumentMimeTypes"/>
+    </wsdl:message>
+    <wsdl:message name="getAllowedDocumentMimeTypesResponse">
+        <wsdl:part name="parameters" element="ns:getAllowedDocumentMimeTypesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="kycRenameCustIdRequest">
+        <wsdl:part name="parameters" element="ns:kycRenameCustId"/>
+    </wsdl:message>
+    <wsdl:message name="kycRenameCustIdResponse">
+        <wsdl:part name="parameters" element="ns:kycRenameCustIdResponse"/>
+    </wsdl:message>
+    <wsdl:message name="kycDeleteCustomerRequest">
+        <wsdl:part name="parameters" element="ns:kycDeleteCustomer"/>
+    </wsdl:message>
+    <wsdl:message name="kycDeleteCustomerResponse">
+        <wsdl:part name="parameters" element="ns:kycDeleteCustomerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="kycScoreRequest">
+        <wsdl:part name="parameters" element="ns:kycScore"/>
+    </wsdl:message>
+    <wsdl:message name="kycScoreResponse">
+        <wsdl:part name="parameters" element="ns:kycScoreResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getDocumentTypesRequest">
+        <wsdl:part name="parameters" element="ns:getDocumentTypes"/>
+    </wsdl:message>
+    <wsdl:message name="getDocumentTypesResponse">
+        <wsdl:part name="parameters" element="ns:getDocumentTypesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="kycGetDetailResultsRequest">
+        <wsdl:part name="parameters" element="ns:kycGetDetailResults"/>
+    </wsdl:message>
+    <wsdl:message name="kycGetDetailResultsResponse">
+        <wsdl:part name="parameters" element="ns:kycGetDetailResultsResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="KYCService01PortType">
+        <wsdl:operation name="kycGetPdfProtocol">
+            <wsdl:input message="ns:kycGetPdfProtocolRequest" wsaw:Action="urn:kycGetPdfProtocol"/>
+            <wsdl:output message="ns:kycGetPdfProtocolResponse" wsaw:Action="urn:kycGetPdfProtocolResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="taxActScore">
+            <wsdl:input message="ns:taxActScoreRequest" wsaw:Action="urn:taxActScore"/>
+            <wsdl:output message="ns:taxActScoreResponse" wsaw:Action="urn:taxActScoreResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetCustomerInformation">
+            <wsdl:input message="ns:kycGetCustomerInformationRequest" wsaw:Action="urn:kycGetCustomerInformation"/>
+            <wsdl:output message="ns:kycGetCustomerInformationResponse" wsaw:Action="urn:kycGetCustomerInformationResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getFatcaStatus">
+            <wsdl:input message="ns:getFatcaStatusRequest" wsaw:Action="urn:getFatcaStatus"/>
+            <wsdl:output message="ns:getFatcaStatusResponse" wsaw:Action="urn:getFatcaStatusResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetResults">
+            <wsdl:input message="ns:kycGetResultsRequest" wsaw:Action="urn:kycGetResults"/>
+            <wsdl:output message="ns:kycGetResultsResponse" wsaw:Action="urn:kycGetResultsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="addChangeOfCircumstances">
+            <wsdl:input message="ns:addChangeOfCircumstancesRequest" wsaw:Action="urn:addChangeOfCircumstances"/>
+            <wsdl:output message="ns:addChangeOfCircumstancesResponse" wsaw:Action="urn:addChangeOfCircumstancesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="addFATCADocument">
+            <wsdl:input message="ns:addFATCADocumentRequest" wsaw:Action="urn:addFATCADocument"/>
+            <wsdl:output message="ns:addFATCADocumentResponse" wsaw:Action="urn:addFATCADocumentResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetCustIdState">
+            <wsdl:input message="ns:kycGetCustIdStateRequest" wsaw:Action="urn:kycGetCustIdState"/>
+            <wsdl:output message="ns:kycGetCustIdStateResponse" wsaw:Action="urn:kycGetCustIdStateResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAllowedDocumentMimeTypes">
+            <wsdl:input message="ns:getAllowedDocumentMimeTypesRequest" wsaw:Action="urn:getAllowedDocumentMimeTypes"/>
+            <wsdl:output message="ns:getAllowedDocumentMimeTypesResponse" wsaw:Action="urn:getAllowedDocumentMimeTypesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="kycRenameCustId">
+            <wsdl:input message="ns:kycRenameCustIdRequest" wsaw:Action="urn:kycRenameCustId"/>
+            <wsdl:output message="ns:kycRenameCustIdResponse" wsaw:Action="urn:kycRenameCustIdResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="kycDeleteCustomer">
+            <wsdl:input message="ns:kycDeleteCustomerRequest" wsaw:Action="urn:kycDeleteCustomer"/>
+            <wsdl:output message="ns:kycDeleteCustomerResponse" wsaw:Action="urn:kycDeleteCustomerResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="kycScore">
+            <wsdl:input message="ns:kycScoreRequest" wsaw:Action="urn:kycScore"/>
+            <wsdl:output message="ns:kycScoreResponse" wsaw:Action="urn:kycScoreResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getDocumentTypes">
+            <wsdl:input message="ns:getDocumentTypesRequest" wsaw:Action="urn:getDocumentTypes"/>
+            <wsdl:output message="ns:getDocumentTypesResponse" wsaw:Action="urn:getDocumentTypesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetDetailResults">
+            <wsdl:input message="ns:kycGetDetailResultsRequest" wsaw:Action="urn:kycGetDetailResults"/>
+            <wsdl:output message="ns:kycGetDetailResultsResponse" wsaw:Action="urn:kycGetDetailResultsResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="KYCService01Soap11Binding" type="ns:KYCService01PortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="kycGetPdfProtocol">
+            <soap:operation soapAction="urn:kycGetPdfProtocol" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="taxActScore">
+            <soap:operation soapAction="urn:taxActScore" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetCustomerInformation">
+            <soap:operation soapAction="urn:kycGetCustomerInformation" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getFatcaStatus">
+            <soap:operation soapAction="urn:getFatcaStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addChangeOfCircumstances">
+            <soap:operation soapAction="urn:addChangeOfCircumstances" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetResults">
+            <soap:operation soapAction="urn:kycGetResults" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addFATCADocument">
+            <soap:operation soapAction="urn:addFATCADocument" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllowedDocumentMimeTypes">
+            <soap:operation soapAction="urn:getAllowedDocumentMimeTypes" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetCustIdState">
+            <soap:operation soapAction="urn:kycGetCustIdState" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycRenameCustId">
+            <soap:operation soapAction="urn:kycRenameCustId" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycDeleteCustomer">
+            <soap:operation soapAction="urn:kycDeleteCustomer" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycScore">
+            <soap:operation soapAction="urn:kycScore" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDocumentTypes">
+            <soap:operation soapAction="urn:getDocumentTypes" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetDetailResults">
+            <soap:operation soapAction="urn:kycGetDetailResults" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="KYCService01Soap12Binding" type="ns:KYCService01PortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="kycGetPdfProtocol">
+            <soap12:operation soapAction="urn:kycGetPdfProtocol" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="taxActScore">
+            <soap12:operation soapAction="urn:taxActScore" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetCustomerInformation">
+            <soap12:operation soapAction="urn:kycGetCustomerInformation" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getFatcaStatus">
+            <soap12:operation soapAction="urn:getFatcaStatus" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addChangeOfCircumstances">
+            <soap12:operation soapAction="urn:addChangeOfCircumstances" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetResults">
+            <soap12:operation soapAction="urn:kycGetResults" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addFATCADocument">
+            <soap12:operation soapAction="urn:addFATCADocument" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllowedDocumentMimeTypes">
+            <soap12:operation soapAction="urn:getAllowedDocumentMimeTypes" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetCustIdState">
+            <soap12:operation soapAction="urn:kycGetCustIdState" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycRenameCustId">
+            <soap12:operation soapAction="urn:kycRenameCustId" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycDeleteCustomer">
+            <soap12:operation soapAction="urn:kycDeleteCustomer" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycScore">
+            <soap12:operation soapAction="urn:kycScore" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDocumentTypes">
+            <soap12:operation soapAction="urn:getDocumentTypes" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetDetailResults">
+            <soap12:operation soapAction="urn:kycGetDetailResults" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="KYCService01HttpBinding" type="ns:KYCService01PortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="kycGetPdfProtocol">
+            <http:operation location="KYCService01/kycGetPdfProtocol"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="kycGetPdfProtocol"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="kycGetPdfProtocol"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="taxActScore">
+            <http:operation location="KYCService01/taxActScore"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="taxActScore"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="taxActScore"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetCustomerInformation">
+            <http:operation location="KYCService01/kycGetCustomerInformation"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="kycGetCustomerInformation"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="kycGetCustomerInformation"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getFatcaStatus">
+            <http:operation location="KYCService01/getFatcaStatus"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getFatcaStatus"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getFatcaStatus"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addChangeOfCircumstances">
+            <http:operation location="KYCService01/addChangeOfCircumstances"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="addChangeOfCircumstances"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="addChangeOfCircumstances"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetResults">
+            <http:operation location="KYCService01/kycGetResults"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="kycGetResults"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="kycGetResults"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addFATCADocument">
+            <http:operation location="KYCService01/addFATCADocument"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="addFATCADocument"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="addFATCADocument"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllowedDocumentMimeTypes">
+            <http:operation location="KYCService01/getAllowedDocumentMimeTypes"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getAllowedDocumentMimeTypes"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getAllowedDocumentMimeTypes"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetCustIdState">
+            <http:operation location="KYCService01/kycGetCustIdState"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="kycGetCustIdState"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="kycGetCustIdState"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycRenameCustId">
+            <http:operation location="KYCService01/kycRenameCustId"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="kycRenameCustId"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="kycRenameCustId"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycDeleteCustomer">
+            <http:operation location="KYCService01/kycDeleteCustomer"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="kycDeleteCustomer"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="kycDeleteCustomer"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycScore">
+            <http:operation location="KYCService01/kycScore"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="kycScore"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="kycScore"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDocumentTypes">
+            <http:operation location="KYCService01/getDocumentTypes"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getDocumentTypes"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getDocumentTypes"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="kycGetDetailResults">
+            <http:operation location="KYCService01/kycGetDetailResults"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="kycGetDetailResults"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="kycGetDetailResults"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="KYCService01">
+        <wsdl:port name="KYCService01HttpSoap11Endpoint" binding="ns:KYCService01Soap11Binding">
+            <soap:address location="http://localhost:8080/axis2/services/KYCService01.KYCService01HttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="KYCService01HttpSoap12Endpoint" binding="ns:KYCService01Soap12Binding">
+            <soap12:address location="http://localhost:8080/axis2/services/KYCService01.KYCService01HttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="KYCService01HttpEndpoint" binding="ns:KYCService01HttpBinding">
+            <http:address location="http://localhost:8080/axis2/services/KYCService01.KYCService01HttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
