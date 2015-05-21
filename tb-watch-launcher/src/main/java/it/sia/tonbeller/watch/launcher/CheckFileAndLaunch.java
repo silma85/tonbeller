@@ -19,18 +19,15 @@ public class CheckFileAndLaunch {
 
   private final static Logger log = LoggerFactory.getLogger(CheckFileAndLaunch.class);
 
-  public void checkDirectoryAndLaunchBatch(Object... args) {
+  public void checkDirectoryAndLaunchBatch(final String path, final String batch, final Integer interval) {
 
-    final String pathToWatch = (String) args[0];
-    final String batchToLaunch = (String) args[1];
-
-    File file = new File(pathToWatch);
+    File file = new File(path);
     if (file.exists()) {
 
-      log.info(String.format("File %s was found.", pathToWatch));
+      log.info(String.format("File %s was found.", path));
 
       try {
-        Runtime.getRuntime().exec("cmd /c start " + batchToLaunch);
+        Runtime.getRuntime().exec("cmd /c start " + batch);
       } catch (IOException e) {
         log.error("Errore I/O: " + e.getMessage());
       } finally {
